@@ -55,7 +55,7 @@ public class Order {
         this.user = user;
     }
 
-    public String getId() {
-        return this.id.toString();
+    public Long getId() {
+        return id;
     }
 }

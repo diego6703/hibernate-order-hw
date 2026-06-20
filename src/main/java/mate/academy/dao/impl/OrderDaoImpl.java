@@ -35,7 +35,7 @@ public class OrderDaoImpl implements OrderDao {
     }
 
     @Override
-    public List<Order> getOrderHistory(User user) {
+    public List<Order> getByUser(User user) {
         try (Session session = HibernateUtil.getSessionFactory().openSession()) {
             return session.createQuery(
                             "SELECT DISTINCT o FROM Order o"
@@ -46,7 +46,7 @@ public class OrderDaoImpl implements OrderDao {
                     .setParameter("user", user)
                     .getResultList();
         } catch (Exception e) {
-            throw new RuntimeException("Can't get history of orders for user: " + user, e);
+            throw new DataProcessingException("Can't get history of orders for user: " + user, e);
         }
     }
 }
